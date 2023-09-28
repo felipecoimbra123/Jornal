@@ -1,0 +1,66 @@
+@charset "UTF-8";  /* Permite todos os caracteres */
+ /* CSS para páginas impressas */
+
+body {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.1em;
+    background-color: white !important;  /* Esse !important faz com que sempre siga esse valor */
+}
+
+.cabecalho_site, footer {
+    display: none;
+}
+
+.artigo_reportagem h2 {
+    font-size: 3em;
+}
+
+.div_main {
+    width: 95%;
+    box-shadow: none;
+}
+
+.artigo_reportagem :is(figure, .img-float) {
+    width: 70%;
+    float: none;
+    margin: 15px auto;
+}
+
+a, abbr {
+    text-decoration: none;
+    color: inherit !important; /* Esse !important faz com que sempre siga esse valor */
+}
+
+.main-vagas {
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 80%;
+}
+
+.artigo_reportagem thead {
+    position: static;
+}
+
+.artigo_reportagem tr:hover > :is(td, td:nth-child(2n)) {
+    background-color: initial;
+    color: black;
+}
+
+.artigo_reportagem tr:hover td:first-child:before {
+    color: var(--cor-principal);
+}
+
+.artigo_reportagem pre {
+    break-inside: avoid;
+}
+
+.div_main::after {
+    /* Faz aparecer ao final da página um texto informando sobre o jornal */
+    content: "Manchete impressa do jornal Informe Geral.";
+    color: var(--cor-principal);
+    font-size: 1.4em;
+    display: block;
+    text-align: center;
+    margin: 20px;
+    break-before: avoid;
+}

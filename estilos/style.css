@@ -1,0 +1,535 @@
+@charset "UTF-8";  /* Permite todos os caracteres */
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+:root {
+    /* Variáveis */
+    --cor-principal: #295991;
+    --cor-secundaria: #02428b;
+    --bege: #fff4f0;
+    --cinza: #EDF0F2;
+    --cinza-escuro: #e5e7e7;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    display: flex; /* Faz com que o rodapé fique fixo no fundo da página */
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: 'Lato', sans-serif;
+}
+
+body:not(.body-main) {
+    /* Todos que não sejam o main do index ficam com o fundo bege */
+    background-color: var(--bege);
+}
+
+/* Cabeçalho */
+
+.cabecalho_site {
+    background-color: var(--cor-principal);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 23px;
+    color: white;
+}
+
+h1 img {
+    width: 100px;
+}
+
+.cabecalho_site > * {
+    flex: 1;
+}
+
+.nav_links, .nav_links ul {
+    text-transform: uppercase; /* Deixa as letras maiúsculas */
+    font-size: clamp(1.04em, 2vw, 1.12em); /* Faz com que o tamanho da fonte possa aumentar e diminuir */
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    list-style: none;
+    justify-content: center;
+}
+
+.cabecalho_site form {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nav_links a {
+    color: inherit;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.nav_links a:hover {
+    text-decoration: underline;
+}
+
+.nav_links .menu {
+    /* Tira o menu que abre e fecha */
+    display: none;
+}
+
+.barra-de-pesquisa {
+    display: flex;
+    gap: 3px;
+    background-color: var(--cor-secundaria);
+    padding: 2px;
+    width: 120px;
+    transition: 0.3s;
+}
+
+.barra-de-pesquisa:focus-within {
+    /* Muda a div caso o input dentro dela esteja selecionado */
+    background-color: white;
+    color: black;
+    width: 200px;
+    border: 1px solid black;
+}
+
+.lupa {
+    cursor: pointer;
+    display: flex;
+}
+
+#pesquisa {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    font-size: 1em;
+    width: 83%;
+    caret-color: var(--cor-principal);
+    color: white;
+}
+
+#pesquisa:focus {
+    color: black;
+}
+
+.barra-de-pesquisa ::placeholder {
+    color: white;
+}
+
+.barra-de-pesquisa:focus-within ::placeholder {
+    color: black;
+}
+
+/* Parte principal do index */
+
+main {
+    flex: 1; /* Faz com que o main ocupe todo o espaço, empurrando o footer para baixo */
+}
+
+.main-home {
+    display: flex;
+    flex-direction: column;
+    padding: 40px 20px;
+}
+
+.div-titulo > h2 {
+    border-bottom: 1px solid var(--cor-principal);
+    color: var(--cor-principal);
+    margin: 10px 35px;
+    padding: 0 5px;
+}
+
+.div_noticia, .section_charges{
+    justify-content: space-around;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px 0;
+    gap: 30px;
+}
+
+:is(.div_noticia, .section_charges) > a {
+    flex: 1;
+    max-width: 350px;
+    height: 200px;
+    text-decoration: none;
+    transition: .3s;
+}
+
+.div_noticia:not(.novidades) a, .section_charges a {
+    min-width: 25vw;
+}
+
+:is(.div_noticia, .section_charges) > a:hover {
+    transform: scale(1.05);
+}
+
+.body-main figure, .section_charges figure {
+    /* Faz com que a legenda fique junto com a imagem */
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 30px;
+    width: 100%;
+    height: 100%;
+}
+
+:is(.div_noticia, .section_charges) figure img {
+    width: 100%;
+    height: 100%;
+    grid-column: 1 / 1;
+    grid-row: 1 / 3;
+    object-fit: cover;
+}
+
+:is(.body-main, .section_charges) figure figcaption {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    background-color: rgba(0, 0, 0, 0.637);
+    color: white;
+    text-align: center;
+    font-size: 1.4em;
+    padding: 0 10px;
+
+    /* Faz com que apareça três pontinhos quando não couber */
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.novidades {
+    display: grid;
+    grid-template-columns: 1fr repeat(2, 250px);
+    grid-template-rows: repeat(2, 200px);
+    align-items: center;
+    justify-items: center;
+}
+
+.novidades a:first-child {
+    grid-row: 1 / 3;
+    height: 100%;
+    max-width: 100%;
+}
+
+.novidades a:first-child figure {
+    height: 100%;
+    grid-template-rows: 1fr 50px;
+    font-size: 1.6em;
+}
+
+.novidades a:first-child img {
+    height: 100%;
+}
+
+div.novidades a {
+    width: 90%;
+}
+
+/* Rodapé */
+
+footer {
+    background-color: var(--cor-principal);
+    padding: 20px;
+    color: white;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+footer h2 {
+    margin-bottom: 10px;
+}
+
+/* Parte principal das notícias, reportagens, etc */
+
+.main-noticias {
+    overflow: clip;
+    max-width: 100%;
+    display: flex;
+}
+
+.div_main {
+    padding: 40px 20px;
+    max-width: 900px;
+    width: 100%;
+    background-color: white;
+    margin: 15px auto;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.45);
+    animation: surgir .5s ease-in-out;
+}
+
+@keyframes surgir {
+    from {transform: translate(50vw);}
+    to {transform: translate(0);}
+}
+
+.artigo_reportagem h2 {
+    text-align: center;
+    font-size: 2em;
+    break-after: avoid; /* Evita quebra ao imprimir a página */
+    margin-bottom: 15px;
+}
+
+.artigo_reportagem :is(h3, h4) {
+    font-size: 1.7em;
+    text-align: center;
+    color: var(--cor-principal);
+    margin: 15px 0;
+    break-after: avoid; /* Evita quebra ao imprimir a página */
+}
+
+.artigo_reportagem h4 {
+    text-align: left;
+}
+
+.artigo_reportagem p, .artigo_reportagem > blockquote {
+    font-size: 1.1em;
+    text-indent: 20px;
+    line-height: 1.4em;
+    text-align: justify;
+}
+
+.artigo_reportagem > blockquote {
+    padding: 10px;
+    font-size: 1.2em;
+}
+
+.artigo_reportagem :is(ul, ol) {
+    font-size: 1.1em;
+    list-style-position: inside;
+    padding: 7px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.artigo_reportagem ::marker {
+    color: var(--cor-principal);
+}
+
+.artigo_reportagem figure {
+    text-align: center;
+    margin: 15px 0;
+    break-inside: avoid; /* Evita quebra ao imprimir a página */
+    break-before: avoid; /* Evita quebra ao imprimir a página */
+}
+
+.artigo_reportagem figcaption a {
+    color: var(--cor-principal);
+}
+
+.artigo_reportagem figcaption a:hover {
+    color: #000c1a;
+}
+
+.artigo_reportagem img{
+    width: 80%;
+}
+
+.artigo_reportagem strong {
+    color: var(--cor-secundaria);
+}
+
+.artigo_reportagem .img-float {
+    width: 50%;
+    float: right; /* Deixa a imagem flutuando sobre o texto */
+    margin: 0;
+}
+
+.artigo_reportagem abbr {
+    color: var(--cor-secundaria);
+}
+
+.olho {
+    font-size: 1.7em;
+    text-align: center;
+    margin: 15px 0;
+    padding: 10px 65px;
+    border-left: 5px solid var(--cor-principal);
+    break-inside: avoid; /* Evita quebra ao imprimir a página */
+    background-color: var(--cinza);
+}
+
+.olho cite {
+    font-size: 0.7em;
+}
+
+.olho p {
+    text-align: center;
+}
+
+.artigo_reportagem > blockquote {
+    font-style: italic;
+    font-size: 1.1em;
+    padding: 7px;
+    text-align: center;
+}
+
+ /* Parte principal vaga de emprego */
+
+.main-vagas {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.main-vagas article {
+    flex-basis: 47%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    transition: .3s;
+}
+
+.main-vagas article:hover {
+    transform: translate(0, -10px);
+}
+
+.main-vagas section {
+    flex: 1;
+    background-color: var(--cinza);
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.45);
+}
+
+/* Parte principal tabela brasileirão */
+
+.artigo_reportagem .div_tabela {
+    margin: 15px 0;
+}
+
+.artigo_reportagem table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1.1em;
+}
+
+.tabela-classificacao {
+    counter-reset: posicao;
+}
+
+.artigo_reportagem :is(table, th, td) {
+    font-weight: normal;
+    border: 1px solid black;
+}
+
+.artigo_reportagem caption {
+    font-size: 1.7em;
+    color: var(--cor-principal);
+    text-align: left;
+    margin: 5px;
+}
+
+.artigo_reportagem thead {
+    background-color: var(--cor-principal);
+    color: white;
+    font-size: 1.1em;
+    position: sticky;
+    top: 0;
+}
+
+.artigo_reportagem tr:nth-child(2n) {
+    background-color: var(--cinza);
+}
+
+.artigo_reportagem th {
+    padding: 5px 10px;
+    white-space: nowrap;
+}
+
+.artigo_reportagem td {
+    padding: 10px;
+}
+
+.tabela-classificacao {
+    white-space: nowrap;
+}
+
+.artigo_reportagem .tabela-classificacao td:not(:first-child) {
+    text-align: center;
+}
+
+.artigo_reportagem td:nth-child(2n) {
+    background-color: var(--cinza);
+}
+
+.artigo_reportagem tr:nth-child(2n) td:nth-child(2n) {
+    background-color: var(--cinza-escuro);
+}
+
+.artigo_reportagem tr:hover > :is(td, td:nth-child(2n)) {
+    transition: .1s;
+    background-color: var(--cor-principal);
+    color: white;
+}
+
+.artigo_reportagem .tabela-classificacao td:first-child:before {
+    counter-increment: posicao;
+    content: counter(posicao) " - ";
+    display: inline-block;
+    margin-right: 4px;
+    color: var(--cor-principal);
+}
+
+.artigo_reportagem tr:hover td:first-child:before {
+    color: white;
+}
+
+.artigo_reportagem p a {
+    color: var(--cor-principal);
+    text-underline-offset: 3px;
+}
+
+.artigo_reportagem p a:hover {
+    color: inherit;
+}
+
+/* Parte de código */
+
+.artigo_reportagem pre {
+    /* Muda a parte de códigos */
+    background-color: var(--cinza);
+    color: var(--cor-principal);
+    font-size: 1.3em;
+    margin: 15px 0;
+    padding: 7px 15px;
+    overflow-x: auto;
+    border: 2px solid var(--cor-principal);
+    border-top-width: 12px;
+}
+
+.section_charges a {
+    min-width: 20vw;
+}
+
+/* Poemas */
+
+.artigo_poema h2 {
+    color: var(--cor-principal);
+}
+
+.artigo_poema p {
+    text-indent: 0;
+    font-size: 1.6em;
+    margin-bottom: 20px;
+    border-left: 3px solid var(--cor-principal);
+    padding-left: 15px;
+}
+
+.artigo_reportagem video {
+    width: 100%;
+    margin: 15px 0;
+}
+
+.div_iframe {
+    position: relative;
+    padding-bottom: 56%;
+    background-color: var(--cor-principal);
+    margin: 15px 0;
+}
+
+.div_iframe iframe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
